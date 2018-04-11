@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="enquiry-entry">
+
+        <h2>{{ object.Enquiry_Subject }}</h2>
+        <p>{{ object.enquiry_Created_Date }}</p>
+
+    </div>
+
+    <!--    enquiry Edit Delete button -->
+
+    <p>
+        <a href="{% url 'enquiry_edit' enquiry.pk %}">Edit</a> |
+
+        <a href="{% url 'enquiry_delete' enquiry.pk %}">Delete</a>
+    </p>
+
+    <!--    # facebook like button -->
+
+    <div
+        class="fb-like"
+        data-share="true"
+        data-width="450"
+        data-show-faces="true">
+    </div>
+
+    <p>Back to <a href="{% url 'enquiry_list' %}">All Messages</a>.</p>
+
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+
+<!-- creating frame for page via base.html -->
+
+{% include 'navbar.html' %}
+
+<!-- block for view from PostCreateView -->
+
+{% block content %}
+<br>
+    <br>
+    <br>
+    <h1>Enquiry About Services</h1>
+    <br>
+    <br>
+    <br>
+
+    <form action="" method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button class="btn btn-success ml-2" type="submit">Save</button>
+
+    </form>
+
+{% endblock %}

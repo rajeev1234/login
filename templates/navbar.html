@@ -1,0 +1,120 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 50px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+</style>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://127.0.0.1:8000/" class="navbar-brand" href="">ForFilm Production</a>
+        </div>
+        <center>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li ><a href="http://127.0.0.1:8000/post/new/">Post</a>
+                    </li>
+                    <li><a href="{% url 'newsletter'%}">Newsletter</a>
+                    </li>
+                    <li><a href="{% url 'pastwork' %}">Past Work</a>
+                    </li>
+                    <li><a href="{% url 'work' %}">Work</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown" data-toggle="dropbtn">Help <b class="caret"></b></a>
+                        <ul class="dropdown-content">
+                            <a href="{% url 'enquiry_new' %}">Service Enquiry</a>
+                            <a href="{% url 'contact_us_new' %}">Contact Us</a>
+
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="{% url 'service_list' %}" class="dropdown" data-toggle="dropbtn">Services <b class="caret"></b></a>
+                        <ul class="dropdown-content">
+                            <a href="#">FEATURE</a>
+                            <a href="#">TVC/CORPORATES/AV’s</a>
+                            <a href="#">FILMING/EVENT PERMISSIONS</a>
+                            <a href="#">AUGMENTED REALITY CAMPAIGNS</a>
+                            <a href="#">3D DESIGNING/MODELING/WALKTHROUGHS/ANIMATIONS</a>
+                            <a href="">IT CONSULTANCY</a>
+                            <a href="">APPLICATION DEVELOPMENT/WEB DESIGNING</a>
+                            <a href="">MOBILE APPLICATION DEVELOPMENT</a>
+                            <a href="">WEBCASTING SERVICES end to end</a>
+                            <a href="">CORPORATE IDENTITIES/BRAND BUILDING</a>
+                            <a href="">CREATIVE CONSULTANCY</a>
+                            <a href="">PRINT DESIGNING</a>
+                            <a href="">EVENTS</a>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}" >Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'signup' %}">Register</a></li>
+                {% endif %}
+                </ul>
+
+                {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path  %}
+                <form class="navbar-form navbar-right" method ='POST' action="{% url "login" %}">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-default">Sign In</button>
+                </form>
+                {% endif %}
+            </div>
+        </center>
+    </div>
+</div>

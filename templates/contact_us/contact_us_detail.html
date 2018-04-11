@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="contact_us-entry">
+
+        <h2>{{ object.contact_us_Subject }}</h2>
+        <p>{{ object.contact_us_Created_Date }}</p>
+
+    </div>
+
+    <!--    contact_us Edit Delete button -->
+
+    <p>
+        <a href="{% url 'contact_us_edit' contact_us.pk %}">Edit</a> |
+
+        <a href="{% url 'contact_us_delete' contact_us.pk %}">Delete</a>
+    </p>
+
+    <!--    # facebook like button -->
+
+    <div
+        class="fb-like"
+        data-share="true"
+        data-width="450"
+        data-show-faces="true">
+    </div>
+
+    <p>Back to <a href="{% url 'contact_us_list' %}">All Messages</a>.</p>
+
+
+{% endblock content %}
